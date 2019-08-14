@@ -1,0 +1,16 @@
+# wool
+wool:black 30 30 30
+wool:blue 0 73 146
+wool:brown 88 44 0
+wool:cyan 0 132 140
+wool:dark_green 33 103 0
+wool:dark_grey 60 60 60
+wool:green 93 218 28
+wool:grey 133 133 133
+wool:magenta 201 3 112
+wool:orange 214 83 22
+wool:pink 255 133 133
+wool:red 170 18 18
+wool:violet 93 5 169
+wool:white 220 220 220
+wool:yellow 254 226 16
