@@ -208,7 +208,7 @@ function place_obj(params)
     end
 
     vm:set_data(data)
-    --vm:calc_lighting()
-    --vm:update_liquids()
+    vm:calc_lighting()
+    vm:update_liquids()
     vm:write_to_map()
 end
