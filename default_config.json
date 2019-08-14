@@ -1,0 +1,12 @@
+{
+  "max_precision" : 15,
+  "download" : true,
+  "defaults" : {
+    "precision" : 4,
+    "min_density" : 0.1,
+    "dithering" : 10,
+    "placement" : 1,
+    "color_choosing" : 1,
+    "filtering" : 1
+  }
+}
