@@ -1,4 +1,4 @@
-![Logo](/home/lars/.minetest/mods/voxelizer/logo.png)
+![Logo](https://raw.githubusercontent.com/appgurueu/voxelizer/master/logo.png)
 # Voxelizer (`voxelizer`)
 Turns 3D models into astonishing voxel builds. Sort of the opposite of [`wesh`](https://github.com/entuland/wesh) and [`meshport`](https://github.com/random-geek/meshport).
 Another mighty world manipulation tool like [`worldedit`](https://github.com/Uberi/Minetest-WorldEdit). Blazing fast.
@@ -21,13 +21,16 @@ Logo license (`logo.png`) : derived from `character.png` by Jordach (see above),
 
 ## Screenshots
 
-![Screenshot 1](/home/lars/.minetest/mods/voxelizer/screenshot.png)
+![Screenshot 1](https://raw.githubusercontent.com/appgurueu/voxelizer/master/screenshot.png)
 Some Sams, using reduced palettes.
-![Screenshot 2](/home/lars/.minetest/mods/voxelizer/screenshot_2.png)
+
+![Screenshot 2](https://raw.githubusercontent.com/appgurueu/voxelizer/master/screenshot_2.png)
 Another Sam, using the full `colors.txt` palette from Minetestmapper.
-![Screenshot 3](/home/lars/.minetest/mods/voxelizer/screenshot_3.png)
+
+![Screenshot 3](https://raw.githubusercontent.com/appgurueu/voxelizer/master/screenshot_3.png)
 Same Sam, rear view.
-![Screenshot 4](/home/lars/.minetest/mods/voxelizer/screenshot_4.png)
+
+![Screenshot 4](https://raw.githubusercontent.com/appgurueu/voxelizer/master/screenshot_4.png)
 2 mages & Ironmen (thanks to [Jordach](http://minetest.fensta.bplaced.net/#author=Jordach) and [Ginsu23](http://minetest.fensta.bplaced.net/#author=Ginsu23) for the skins)
 
 The used texture pack was [MTUOTP](https://content.minetest.net/packages/GamingAssociation39/mtuotp/) by Aurailus and GamingAssociation39. 

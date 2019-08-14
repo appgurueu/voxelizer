@@ -1,12 +1,5 @@
-conf = {max_precision = 15, download = true}
-local mediapath = minetest.get_modpath("voxelizer").."/media/"
-defaults = {texture = mediapath.."character.png",
-            model =  mediapath.."character.obj",
-            nodemap = mediapath.."colors.txt",
-            placement = 1,
-            dithering = 10,
-            precision = 4,
-            min_density = 0.1}
+local conf = config
+local defaults = conf.defaults
 
 minetest.register_privilege("protection_bypass", {
     description = "Can bypass protection",
