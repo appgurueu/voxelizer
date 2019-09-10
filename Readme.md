@@ -43,6 +43,8 @@ You need the `voxelizer` priv to use any of the Voxelizer commands. Some command
 Media - models, textures and nodemaps (color lookups) - is stored in `<worldpath>/media`.
 If you are unsure about which settings to use, either do some research or *try it and see*.
 Editing the placed models is recommended; Voxelizer might place a few blocks undesirably, which needs to be fixed by hand.
+Voxelizer needs to be added as to the trusted mods in the settings in order to be able to read textures or download files.
+Disabling mod security would also work but is **not** recommended.
 
 ### Configuration
 

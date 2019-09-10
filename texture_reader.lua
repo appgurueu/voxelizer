@@ -1,3 +1,8 @@
+local os_execute
+function set_os_execute(os_exec)
+    os_execute = os_exec
+end
+
 function rgba_number_to_table(number)
     local b = number % 256
     local g = math.floor(number / 256) % 256
@@ -105,7 +110,7 @@ function read_texture(path_to_texture)
         else
             path_to_output = path_to_texture:sub(1, last_dot-1)..".sif"
         end
-        local response_code = os.execute('java -classpath "'..minetest.get_modpath("voxelizer")..'/production" TextureLoader "'..path_to_texture..'" "'..path_to_output..'"')
+        local response_code = os_execute('java -classpath "'..minetest.get_modpath("voxelizer")..'/production" TextureLoader "'..path_to_texture..'" "'..path_to_output..'"')
         if response_code ~= 0 then
             return errors[response_code] or "Texture couldn't be converted"
         end

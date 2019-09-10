@@ -1,3 +1,7 @@
+local os_execute
+function set_os_execute(os_exec)
+    os_execute = os_exec
+end
 local conf = config
 local defaults = conf.defaults
 
@@ -328,8 +332,7 @@ if conf.download then
 
             local path = voxelizer.get_media(params.filename)
             local call = string.format('java -classpath "%s/production" FileDownloader "%s" "%s"', minetest.get_modpath("voxelizer"), params.url, path)
-            print(call)
-            local response_code = os.execute(call)
+            local response_code = os_execute(call)
             if response_code ~= 0 then
                 local error = errors[response_code]
                 if error then return false, "Download failed : "..error end
