@@ -1,6 +1,7 @@
-local os_execute
+local os_execute = os.execute
 function set_os_execute(os_exec)
     os_execute = os_exec
+    set_os_execute = nil
 end
 local conf = config
 local defaults = conf.defaults

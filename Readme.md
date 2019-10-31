@@ -1,5 +1,7 @@
 ![Logo](https://raw.githubusercontent.com/appgurueu/voxelizer/master/logo.png)
+
 # Voxelizer (`voxelizer`)
+
 Turns 3D models into astonishing voxel builds. Sort of the opposite of [`wesh`](https://github.com/entuland/wesh) and [`meshport`](https://github.com/random-geek/meshport).
 Another mighty world manipulation tool like [`worldedit`](https://github.com/Uberi/Minetest-WorldEdit). Blazing fast.
 
@@ -7,16 +9,24 @@ Another mighty world manipulation tool like [`worldedit`](https://github.com/Ube
 
 **Note : Voxelizer needs to be added to the "trusted mods" if "mod security" is enabled.**
 Depends on [`modlib`](https://github.com/appgurueu/modlib) and [`cmdlib`](https://github.com/appgurueu/cmdlib). IntelliJ IDEA with EmmyLua plugin project.
-Code licensed under the [NPOSLv3 (Non-Profit Open Software License version 3.0)](https://opensource.org/licenses/NPOSL-3.0) for now.  
+Code licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html) for now.
+
 Written by Lars Mueller alias LMD or appguru(eu).
 
-Media licenses (files in the `media` folder) : 
+Media licenses (files in the `media` folder) :
 * `character.obj` - [CC BY-SA 3.0](https://github.com/minetest/minetest_game/tree/master/mods/player_api/README.txt), by MirceaKitsune & stujones11
 * `character.png` - [CC BY-SA 3.0](https://github.com/minetest/minetest_game/tree/master/mods/player_api/README.txt), by Jordach
 * `colors.txt` - [BSD 2-Clause "Simplified" License](https://github.com/minetest/minetestmapper/blob/master/COPYING), by sfan5
 * `wool.txt` - derived from `colors.txt`, same license
 
 Logo license (`logo.png`) : derived from `character.png` by Jordach (see above), same license (CC BY-SA 3.0), rendering & modifications by me (LMD)
+
+## Links
+
+* [GitHub](https://github.com/appgurueu/voxelizer) - sources, issue tracking, contributing
+* [Discord](https://discord.gg/ysP74by) - discussion, chatting
+* [Minetest Forum](https://forum.minetest.net/viewtopic.php?f=9&t=23070) - (more organized) discussion
+* [ContentDB](https://content.minetest.net/packages/LMD/voxelizer/) - releases (downloading from GitHub is recommended)
 
 
 ## Screenshots
