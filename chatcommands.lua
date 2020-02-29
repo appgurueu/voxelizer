@@ -3,8 +3,7 @@ function set_os_execute(os_exec)
     os_execute = os_exec
     set_os_execute = nil
 end
-local conf = config
-local defaults = conf.defaults
+local defaults = config.defaults
 
 minetest.register_privilege("protection_bypass", {
     description = "Can bypass protection",
@@ -18,7 +17,7 @@ minetest.register_privilege("voxelizer", {
     give_to_singleplayer = true
 })
 
-cmd_ext.register_chatcommand("vox", {
+cmdlib.register_chatcommand("vox", {
     description = "Voxelizer",
     privs = {voxelizer = true},
     func = function(sendername, params)
@@ -55,12 +54,12 @@ end
 
 function register_setting_command(commandname, values, settingname)
     settingname = settingname or commandname
-    local root = number_ext.round(math.sqrt(#values))
+    local root = modlib.number.round(math.sqrt(#values))
     local display_vals = {}
     for index, val in ipairs(values) do
         table.insert(display_vals, index..". "..val)
     end
-    cmd_ext.register_chatcommand("vox "..commandname, {
+    cmdlib.register_chatcommand("vox "..commandname, {
         description = "Get and list or set player-specific setting "..settingname,
         params = "[index]",
         func = function(sendername, params)
@@ -89,13 +88,13 @@ end
 
 function register_file_command(commandname, settingname)
     settingname = settingname or commandname
-    cmd_ext.register_chatcommand("vox "..commandname, {
+    cmdlib.register_chatcommand("vox "..commandname, {
         description = "Get or set player-specific file "..settingname,
         params = "[filename]",
         func = function(sendername, params)
             if params.filename then
                 local path = get_media(params.filename)
-                if not file_ext.exists(path) then return false, "File doesn't exist" end
+                if not modlib.file.exists(path) then return false, "File doesn't exist" end
                 set_setting(sendername, settingname, params.filename)
                 return true, string.format('File "%s" was set to "%s"', settingname, params.filename)
             end
@@ -130,7 +129,7 @@ register_file_command("texture")
 register_file_command("nodemap")
 
 function register_bool_setting_command(name)
-    cmd_ext.register_chatcommand("vox "..name, {
+    cmdlib.register_chatcommand("vox "..name, {
         description = "Check whether "..name.." is enabled",
         func = function(sendername)
             local enabled = get_setting_int(sendername, name) == 1
@@ -138,7 +137,7 @@ function register_bool_setting_command(name)
         end
     })
 
-    cmd_ext.register_chatcommand("vox "..name.." enable", {
+    cmdlib.register_chatcommand("vox "..name.." enable", {
         description = "Enable "..name,
         privs = {protection_bypass = true},
         func = function(sendername)
@@ -147,7 +146,7 @@ function register_bool_setting_command(name)
         end
     })
 
-    cmd_ext.register_chatcommand("vox "..name.." disable", {
+    cmdlib.register_chatcommand("vox "..name.." disable", {
         description = "Disable "..name,
         privs = {protection_bypass = true},
         func = function(sendername)
@@ -161,8 +160,8 @@ register_bool_setting_command("protection_bypass")
 
 register_bool_setting_command("alpha_weighing")
 
-local max_precision = conf.max_precision
-cmd_ext.register_chatcommand("vox precision", {
+local max_precision = config.max_precision
+cmdlib.register_chatcommand("vox precision", {
     description = "Set/get current precision",
     params = "[number]",
     func = function(sendername, params)
@@ -178,7 +177,7 @@ cmd_ext.register_chatcommand("vox precision", {
     end
 })
 
-cmd_ext.register_chatcommand("vox min_density", {
+cmdlib.register_chatcommand("vox min_density", {
     description = "Set/get minimum density",
     params = "[number]",
     func = function(sendername, params)
@@ -220,11 +219,11 @@ local function place(sendername, additional)
         color_choosing = color_choosing[setting_int("color_choosing")],
         merge_mode = merge_mode[setting_int("placement")],
     }
-    table_ext.add_all(params, additional)
+    modlib.table.add_all(params, additional)
     return place_obj(params)
 end
 
-cmd_ext.register_chatcommand("vox place", {
+cmdlib.register_chatcommand("vox place", {
     description = "Place model at position with given size. Missing coordinates will be replaced by player coordinates.",
     params = "[scale] {position}",
     func = function(sendername, params)
@@ -240,7 +239,7 @@ cmd_ext.register_chatcommand("vox place", {
     end
 })
 
-cmd_ext.register_chatcommand("vox 1", {
+cmdlib.register_chatcommand("vox 1", {
     description = "Set first corner position of model to be placed. Missing coordinates will be replaced by player coordinates.",
     params = "{position}",
     func = function(sendername, params)
@@ -272,7 +271,7 @@ cmd_ext.register_chatcommand("vox 1", {
     end
 })
 
-cmd_ext.register_chatcommand("vox 2", {
+cmdlib.register_chatcommand("vox 2", {
     description = "Set second corner position of model & place it. Missing coordinates will be replaced by player coordinates.",
     params = "{position}",
     func = function(sendername, params)
@@ -289,7 +288,7 @@ cmd_ext.register_chatcommand("vox 2", {
     end
 })
 
-cmd_ext.register_chatcommand("vox reset", {
+cmdlib.register_chatcommand("vox reset", {
     description = "Reset settings",
     func = function(sendername)
         for setting, _ in pairs(defaults) do
@@ -299,7 +298,7 @@ cmd_ext.register_chatcommand("vox reset", {
     end
 })
 
-if conf.download then
+if config.download then
     minetest.register_privilege("voxelizer:download", {
         description = "Can download files from the internet using the voxelizer mod",
         give_to_admin = true,
@@ -315,7 +314,7 @@ if conf.download then
         "Malformed URL"
     }
 
-    cmd_ext.register_chatcommand("vox download", {
+    cmdlib.register_chatcommand("vox download", {
         description = "Download a file from the internet",
         params = "<url> [filename]",
         privs = {["voxelizer:download"]=true},

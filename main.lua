@@ -35,20 +35,20 @@ function place_obj(params)
     local path_to_obj, path_to_texture, path_to_nodemap, pos1, pos2, scale = params.model, params.texture, params.nodemap, params.pos1, params.pos2, params.scale
     local steps = params.precision or steps
     local min_amount = (params.min_amount or min_amount) * 255 * steps * steps
-    local obj_content = file_ext.read(path_to_obj)
+    local obj_content = modlib.file.read(path_to_obj)
     if not obj_content then
         return ("OBJ doesn't exist."):format(path_to_obj)
     end
-    if not file_ext.exists(path_to_texture) then
+    if not modlib.file.exists(path_to_texture) then
         return ("Texture doesn't exist."):format(path_to_texture)
     end
-    local nodemap_content=file_ext.read(path_to_nodemap)
+    local nodemap_content=modlib.file.read(path_to_nodemap)
     if not nodemap_content then
         return ("Nodemap doesn't exist."):format(path_to_nodemap)
     end
     local nodemap = read_node_map(nodemap_content)
-    local colors = table_ext.keys(nodemap)
-    table_ext.map(colors, rgb_number_to_table)
+    local colors = modlib.table.keys(nodemap)
+    modlib.table.map(colors, rgb_number_to_table)
     local closest_color_finder = closest_color_finder(colors)
     local texture = read_texture(path_to_texture)
     if params.dithering then
@@ -95,7 +95,7 @@ function place_obj(params)
                 return res
             end
         end
-        table_ext.map(vertexes, transform) -- Transforming the vertices to MT space
+        modlib.table.map(vertexes, transform) -- Transforming the vertices to MT space
         area = get_voxel_area(transform(min), transform(max), vm)
 
         data = vm:get_data()

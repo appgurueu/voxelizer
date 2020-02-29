@@ -82,7 +82,7 @@ end
 vector.to_string = function(v)
     local c = {}
     for i=1, #v do
-        c[i] = number_ext.round(v[i], 100)
+        c[i] = modlib.number.round(v[i], 100)
     end
     return table.concat(c, ", ")
 end

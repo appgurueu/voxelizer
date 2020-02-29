@@ -59,7 +59,7 @@ test_texture_reader()
 
 local function test_nodemap_reader()
     print("Nodemap Reader Test : ")
-    local color_to_cid = read_node_map(file_ext.read("/usr/share/games/minetest/minetestmapper-colors.txt"))
+    local color_to_cid = read_node_map(modlib.file.read("/usr/share/games/minetest/minetestmapper-colors.txt"))
     for c, cid in pairs(color_to_cid) do
         print(string.format("%x", c).." -> "..minetest.get_name_from_content_id(cid))
     end

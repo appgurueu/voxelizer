@@ -2,7 +2,7 @@
 -- TODO add support for colors
 function read_obj(obj_content, triangle_consumer_factory)
     print(obj_content)
-    local lines=string_ext.split_without_limit(obj_content, "\n")
+    local lines=modlib.text.split_without_limit(obj_content, "\n")
     local iterator, _, index=ipairs(lines)
 
     ::next_object::
@@ -11,8 +11,8 @@ function read_obj(obj_content, triangle_consumer_factory)
     local counter=1
     index, line=iterator(lines, index)
     repeat
-        if string_ext.starts_with(line, "v ") then
-            local parts=string_ext.split(line:sub(3), " ", 4) -- x, y, z, unneeded
+        if modlib.text.starts_with(line, "v ") then
+            local parts=modlib.text.split(line:sub(3), " ", 4) -- x, y, z, unneeded
             local x, y, z = tonumber(parts[1]), tonumber(parts[2]), tonumber(parts[3])
             if x and y and z then
                 vertices[counter] = {x,y,z}
@@ -20,14 +20,14 @@ function read_obj(obj_content, triangle_consumer_factory)
             counter = counter + 1
         end
         index, line=iterator(lines, index)
-    until string_ext.starts_with(line, "vt ")
+    until modlib.text.starts_with(line, "vt ")
 
     --UVs
     local uvs={}
     counter=1
     repeat
-        if string_ext.starts_with(line, "vt ") then
-            local parts=string_ext.split(line:sub(4), " ", 3)
+        if modlib.text.starts_with(line, "vt ") then
+            local parts=modlib.text.split(line:sub(4), " ", 3)
             local x, y = tonumber(parts[1]), tonumber(parts[2])
             if x and y then
                 uvs[counter] = {x, y}
@@ -35,17 +35,17 @@ function read_obj(obj_content, triangle_consumer_factory)
             counter = counter + 1
         end
         index, line=iterator(lines, index)
-    until string_ext.starts_with(line, "f ")
+    until modlib.text.starts_with(line, "f ")
 
     local triangle_consumer=triangle_consumer_factory(vertices)
     --Faces (need to be triangles), polygons are ignored
     repeat
-        if string_ext.starts_with(line, "f ") then --Face
-            local parts=string_ext.split(line:sub(3), " ", 4)
+        if modlib.text.starts_with(line, "f ") then --Face
+            local parts=modlib.text.split(line:sub(3), " ", 4)
             local verts={}
             local texs={}
             for i=1, 3 do
-                local indices = string_ext.split(parts[i], "/", 3)
+                local indices = modlib.text.split(parts[i], "/", 3)
                 local vert, uv = tonumber(indices[1]), tonumber(indices[2])
                 verts[i] = vertices[vert]
                 texs[i] = uvs[uv]
@@ -53,7 +53,7 @@ function read_obj(obj_content, triangle_consumer_factory)
             end
             triangle_consumer(verts, texs)
             ::invalid::
-        elseif string_ext.starts_with(line, "o ") then
+        elseif modlib.text.starts_with(line, "o ") then
             goto next_object
         end
         index, line=iterator(lines, index)

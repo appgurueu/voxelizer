@@ -48,7 +48,7 @@ local conf_spec = {
     },
 }
 
-config=conf.import("voxelizer", conf_spec)
+config=modlib.conf.import("voxelizer", conf_spec)
 local mediapath = minetest.get_modpath("voxelizer").."/media/"
 local fallback_defaults = {texture = mediapath.."character.png", model =  mediapath.."character.obj", nodemap = mediapath.."colors.txt"}
 for key, alt in pairs(fallback_defaults) do

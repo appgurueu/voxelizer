@@ -1,13 +1,13 @@
 -- Reads a node map in a similar format as minetestmapper.txt
 function read_node_map(minetestmapper_content)
-    local lines=string_ext.split_without_limit(minetestmapper_content, "\n")
+    local lines=modlib.text.split_without_limit(minetestmapper_content, "\n")
     local iterator, _, index=ipairs(lines)
     local color_to_cid={}
 
     --Process lines
     index, line=iterator(lines, index)
     while line do
-        parts=string_ext.split(line, " ",5)
+        parts=modlib.text.split(line, " ",5)
         if #parts >= 4 then
             local c_id=tonumber(parts[1], 16)
             if not c_id then c_id=minetest.get_content_id(parts[1]) end

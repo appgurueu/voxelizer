@@ -55,9 +55,9 @@ end
 
 function bilinear_filtering(texture, pos_uv)
     local x = pos_uv[1]*texture.width
-    local x_line = number_ext.round(x)
+    local x_line = modlib.number.round(x)
     local y = (1-pos_uv[2])*texture.height
-    local y_line = number_ext.round(y)
+    local y_line = modlib.number.round(y)
 
     local affected, affected_alpha = 0, 0
     local avg_alpha = 0
