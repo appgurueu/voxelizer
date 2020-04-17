@@ -318,7 +318,7 @@ if config.download then
         description = "Download a file from the internet",
         params = "<url> [filename]",
         privs = {["voxelizer:download"]=true},
-        func = function(sendername, params)
+        func = function(_, params)
             if not params.filename then
                 local last_slash
                 for i = params.url:len(), 1, -1 do
@@ -331,8 +331,7 @@ if config.download then
             end
 
             local path = voxelizer.get_media(params.filename)
-            local call = string.format('java -classpath "%s/production" FileDownloader "%s" "%s"', minetest.get_modpath("voxelizer"), params.url, path)
-            local response_code = os_execute(call)
+            local response_code = os_execute("java", "-classpath", minetest.get_modpath("voxelizer").."/production", "FileDownloader", params.url, path)
             if response_code ~= 0 then
                 local error = errors[response_code]
                 if error then return false, "Download failed : "..error end

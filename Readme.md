@@ -7,7 +7,7 @@ Another mighty world manipulation tool like [`worldedit`](https://github.com/Ube
 
 ## About
 
-**Note : Voxelizer needs to be added to the "trusted mods" if "mod security" is enabled.**
+**Note: Voxelizer needs to be added to the "trusted mods" if "mod security" is enabled. You should always ensure that all your "trusted mods" run in a safe environment (which means that all other mods are safe as well).**
 Depends on [`modlib`](https://github.com/appgurueu/modlib) and [`cmdlib`](https://github.com/appgurueu/cmdlib). IntelliJ IDEA with EmmyLua plugin project.
 Code licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html) for now.
 
@@ -131,4 +131,3 @@ Everything else should not be ticked.
 * `place [scale]` - place model with given scale (defaults to `1`)
 * `download <url> [filename]` - download a file from the internet using a GET request, requires `voxelizer:download` priv additionally.
   File will be downloaded to `<worldpath>/media/filename`. The URL filename will be taken if `filename` is not specified.
-  **Likely not safe due to the usage of HTTP Requests.**
