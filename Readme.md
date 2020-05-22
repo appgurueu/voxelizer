@@ -13,13 +13,14 @@ Code licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html) fo
 
 Written by Lars Mueller alias LMD or appguru(eu).
 
-Media licenses (files in the `media` folder) :
+Media licenses (files in the `media` folder):
+
 * `character.obj` - [CC BY-SA 3.0](https://github.com/minetest/minetest_game/tree/master/mods/player_api/README.txt), by MirceaKitsune & stujones11
 * `character.png` - [CC BY-SA 3.0](https://github.com/minetest/minetest_game/tree/master/mods/player_api/README.txt), by Jordach
 * `colors.txt` - [BSD 2-Clause "Simplified" License](https://github.com/minetest/minetestmapper/blob/master/COPYING), by sfan5
 * `wool.txt` - derived from `colors.txt`, same license
 
-Logo license (`logo.png`) : derived from `character.png` by Jordach (see above), same license (CC BY-SA 3.0), rendering & modifications by me (LMD)
+Logo license (`logo.png`): derived from `character.png` by Jordach (see above), same license (CC BY-SA 3.0), rendering & modifications by me (LMD)
 
 ## Links
 

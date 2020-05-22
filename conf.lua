@@ -1,10 +1,12 @@
-local int = function(value) if value % 1 ~= 0 then return "Integer instead of float expected." end end
+-- TODO func = int is deprecated and only kept for compatibility
+local int = function(value) if value % 1 ~= 0 then return "Integer instead of float expected" end end
 local conf_spec = {
     type = "table",
     children = {
         max_precision = {
             type = "number",
-            func = function(value) if value % 1 ~= 0 then return "Integer instead of float expected." end end
+            int = true,
+            func = int
         },
         download = {
             type = "boolean"
@@ -21,26 +23,31 @@ local conf_spec = {
                 precision = {
                     type = "number",
                     range = {1, 100},
+                    int = true,
                     func = int
                 },
                 dithering = {
                     type = "number",
                     range = {1, 10},
+                    int = true,
                     func = int
                 },
                 placement = {
                     type = "number",
                     range = {1, 3},
+                    int = true,
                     func = int
                 },
                 color_choosing = {
                     type = "number",
                     range = {1, 2},
+                    int = true,
                     func = int
                 },
                 filtering = {
                     type = "number",
                     range = {1, 2},
+                    int = true,
                     func = int
                 }
             }
