@@ -7,7 +7,7 @@ os_execute = function(command, ...)
     for i, a in pairs{...} do
         args[i] = table.concat(modlib.table.map(modlib.text.split(a, "'"), function(p) return "'"..p.."'" end), [["'"]])
     end
-    return unpack({os_execute_base(command.." "..table.concat(args, " "))})
+    return unpack{os_execute_base(command.." "..table.concat(args, " "))}
 end
 modlib.mod.extend("voxelizer", "conf") -- Load JSON configuration stored in worldpath
 modlib.mod.extend("voxelizer", "vector") -- Own vector lib, operating on lists

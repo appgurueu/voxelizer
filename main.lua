@@ -102,7 +102,7 @@ function place_obj(params)
 
         local is_protected = function(pos) return true end
         if params.playername and not params.protection_bypass then
-            --is_protected = function(pos) return minetest.is_protected(pos, params.playername) end
+            is_protected = function(pos) return minetest.is_protected(pos, params.playername) end
         end
 
         local is_mergeable = function(index) return true end
