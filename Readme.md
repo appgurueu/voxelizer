@@ -1,4 +1,4 @@
-![Logo](https://raw.githubusercontent.com/appgurueu/voxelizer/master/logo.png)
+![Logo](logo.png)
 
 # Voxelizer (`voxelizer`)
 
@@ -8,6 +8,7 @@ Another mighty world manipulation tool like [`worldedit`](https://github.com/Ube
 ## About
 
 **Note: Voxelizer needs to be added to the "trusted mods" if "mod security" is enabled. You should always ensure that all your "trusted mods" run in a safe environment (which means that all other mods are safe as well).**
+
 Depends on [`modlib`](https://github.com/appgurueu/modlib) and [`cmdlib`](https://github.com/appgurueu/cmdlib). IntelliJ IDEA with EmmyLua plugin project.
 Code licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html) for now.
 
@@ -86,7 +87,8 @@ On my system (Java 11), the output was :
 The supported image file formats are : JPG, jpg, tiff, bmp, BMP, gif, GIF, WBMP, png, PNG, JPEG, tif, TIF, TIFF, wbmp, jpeg
 ```
 
-Internally, the `SIF` (`.sif`, "Simple Image File") file format (just gave it some name) is used : 
+Internally, the `SIF` (`.sif`, "Simple Image File") file format (just gave it some name) is used: 
+
 * 4 byte header : 2 times a 2 byte unsigned short, first is width, second is height
 * Followed by uncompressed image data : array of 4 byte tuples, consisting of ARGB unsigned bytes, positions in array are calculated as `x + y * width`
 
@@ -132,3 +134,66 @@ Everything else should not be ticked.
 * `place [scale]` - place model with given scale (defaults to `1`)
 * `download <url> [filename]` - download a file from the internet using a GET request, requires `voxelizer:download` priv additionally.
   File will be downloaded to `<worldpath>/media/filename`. The URL filename will be taken if `filename` is not specified.
+
+## Configuration
+
+JSON Configuration: `<worldpath>/config/voxelizer.json`
+Text Logs: `<worldpath>/logs/voxelizer/<date>.txt`
+Readme : `<modpath/gamepath>/voxelizer/Readme.md`
+Default Configuration : `<modpath/gamepath>/voxelizer/default_config.json`
+
+```json
+{
+  "max_precision" : 15,
+  "download" : true,
+  "defaults" : {
+    "precision" : 4,
+    "min_density" : 0.1,
+    "dithering" : 10,
+    "placement" : 1,
+    "color_choosing" : 1,
+    "filtering" : 1
+   }
+}
+```
+
+#### `max_precision`
+
+Integer, maximum settable precision.
+
+#### `download`
+
+Boolean, whether to enable the `/vox download` chatcommand.
+
+#### `defaults`
+
+Dictionary / table, default names assigned to corresponding values. Possible names below.
+
+##### `min_density`
+
+Float between 0 and 1. Minimum density default.
+
+##### `precision`
+
+Integer > 1 and < 100. Precision default.
+
+##### `dithering`
+
+Default dithering algorithm ID (see `/vox dithering`).
+
+##### `placement`
+
+Default placement mode ID (see `/vox placement`).
+
+##### `color_choosing`
+
+Default color choosing algorithm ID (see `/vox color_choosing`).
+
+##### `filtering`
+
+Default filtering algorithm ID (see `/vox filtering`).
+
+##### `model` / `texture` / `nodemap`
+
+Optional default filenames. Files will be searched in world's media folder.
+If not given, Voxelizer falls back to default files from mod's media folder.

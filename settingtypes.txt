@@ -1,0 +1,3 @@
+voxelizer.max_precision (Voxelizer max_precision) int 15
+
+voxelizer.download (Voxelizer download) bool true
