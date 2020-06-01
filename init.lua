@@ -2,12 +2,12 @@ voxelizer={}
 minetest.mkdir(minetest.get_worldpath().."/media") -- Create media dir
 local os_execute_base = os.execute or (minetest.request_insecure_environment() or
     error("Please add voxelizer to the trusted mods in settings, or disable it. See the Readme for details.")).os.execute
-os_execute = function(command, ...)
+local function os_execute(command, ...)
     local args = {}
     for i, a in pairs{...} do
         args[i] = table.concat(modlib.table.map(modlib.text.split(a, "'"), function(p) return "'"..p.."'" end), [["'"]])
     end
-    return unpack{os_execute_base(command.." "..table.concat(args, " "))}
+    return os_execute_base(command.." "..table.concat(args, " "))
 end
 modlib.mod.extend("voxelizer", "conf") -- Load JSON configuration stored in worldpath
 modlib.mod.extend("voxelizer", "vector") -- Own vector lib, operating on lists
