@@ -31,7 +31,7 @@ function kd_closest_color_finder(colors)
     return function(color)
         local min_distance=math.huge
         local closest_color
-        f=function(tree)
+        local function f(tree)
             local axis=tree.axis
             if #tree > 0 then -- Subtree is leaf
                 local distance = distance(tree, color)
@@ -43,7 +43,7 @@ function kd_closest_color_finder(colors)
             else
                 local new_tree, other_tree = tree.right, tree.left
                 if color[axis] < tree.pivot[axis] then
-                    new_tree, other_tree = tree.left, tree.right
+                    new_tree, other_tree = other_tree, new_tree
                 end
                 f(other_tree)
                 if tree.pivot then
