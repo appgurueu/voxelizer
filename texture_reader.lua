@@ -44,7 +44,7 @@ function set_texture_color_at(texture, x, y, color)
 end
 
 function in_bounds(texture, x, y)
-    return x >= 0 and y >= 0 and x < texture.width and x < texture.height
+    return x >= 0 and y >= 0 and x < texture.width and y < texture.height
 end
 
 function nearest_filtering(texture, pos_uv)
