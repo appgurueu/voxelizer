@@ -53,10 +53,10 @@ local conf_spec = {type = "table", children = {
 }}
 
 config = modlib.conf.import("voxelizer", conf_spec)
-local mediapath = minetest.get_modpath("voxelizer").."/default_media/"
-local fallback_defaults = {texture = mediapath.."character.png", model = mediapath.."character.obj", nodemap = mediapath.."colors.txt"}
+default_media_path = modlib.mod.get_resource(minetest.get_current_modname(), "default_media", "")
+local fallback_defaults = {texture = "character.png", model = "character.obj", nodemap = "colors.txt"}
 for key, alt in pairs(fallback_defaults) do
     if config.defaults[key] == nil then
-        config.defaults[key] = alt
+        config.defaults[key] = default_media_path .. alt
     end
 end

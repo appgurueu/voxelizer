@@ -1,5 +1,9 @@
 function get_media(name)
-    return minetest.get_worldpath().."/media/"..name
+    local path = minetest.get_worldpath() .. "/media/" .. name
+    if not modlib.file.exists(path) then
+        path = default_media_path .. "/" .. name
+    end
+    return path
 end
 
 function get_obj_bounding_box(vertexes)
