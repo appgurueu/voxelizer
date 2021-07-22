@@ -9,17 +9,17 @@ local function os_execute(command, ...)
     end
     return os_execute_base(command.." "..table.concat(args, " "))
 end
-local extend = modlib.mod.extend
-extend("conf") -- Load JSON configuration stored in worldpath
-extend("closest_color") -- Closest color finder, uses linear search / k-d tree depending on number of colors
-extend("texture_reader") -- Texture reader, reads textures, uses Java program
-voxelizer.set_os_execute(os_execute) -- Passing insecure os.execute while keeping it local
-extend("dithering") -- Error diffusion dithering
-extend("obj_reader") -- OBJ reader, reads simple OBJ models
-extend("node_map_reader") -- Node map reader, reads minetestmapper-colors.txt like files
-extend("main") -- Main : Actual API for placing of models using VoxelManip
-extend("chatcommands") -- Chatcommands for making use of the API
-voxelizer.set_os_execute(os_execute) -- Passing insecure os.execute while keeping it local
+local function load(name, ...)
+	assert(loadfile(modlib.mod.get_resource(name .. ".lua")))(...)
+end
+load"conf" -- Load JSON configuration stored in worldpath
+load"closest_color" -- Closest color finder, uses linear search / k-d tree depending on number of colors
+load("texture_reader", os_execute) -- Texture reader, reads textures, uses Java program
+load"dithering" -- Error diffusion dithering
+load"obj_reader" -- OBJ reader, reads simple OBJ models
+load"node_map_reader" -- Node map reader, reads minetestmapper-colors.txt like files
+load"main" -- Main : Actual API for placing of models using VoxelManip
+load("chatcommands", os_execute) -- Chatcommands for making use of the API
 
 -- Tests, not intended for production use
 --[[minetest.register_on_mods_loaded(function()

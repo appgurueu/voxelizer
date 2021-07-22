@@ -1,14 +1,11 @@
+local os_execute = ...
+
 local vector, round = modlib.vector, modlib.math.round
 
 local function format_pos(v)
     return table.concat(vector.apply(v, function(c) return round(c, 100) end), ", ")
 end
 
-local os_execute = os.execute
-function set_os_execute(os_exec)
-    os_execute = os_exec
-    set_os_execute = nil
-end
 local defaults = config.defaults
 
 minetest.register_privilege("protection_bypass", {

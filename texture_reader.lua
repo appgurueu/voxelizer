@@ -1,10 +1,6 @@
-local vector = modlib.vector
+local os_execute = ...
 
-local os_execute = os.execute
-function set_os_execute(os_exec)
-    os_execute = os_exec
-    set_os_execute = nil
-end
+local vector = modlib.vector
 
 function rgba_number_to_table(number)
     local b = number % 256
