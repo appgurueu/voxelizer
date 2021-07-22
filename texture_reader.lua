@@ -1,3 +1,5 @@
+local vector = modlib.vector
+
 local os_execute = os.execute
 function set_os_execute(os_exec)
     os_execute = os_exec
@@ -72,7 +74,7 @@ function bilinear_filtering(texture, pos_uv)
             if factor > 0 then
                 local a, r, g, b = unpack(get_texture_color_at(texture, math.floor(px), math.floor(py)))
                 affected = affected + factor * a
-                avg = vector.add(avg, vector.multiply({r, g, b}, factor * a))
+                avg = vector.add(avg, vector.multiply_scalar({r, g, b}, factor * a))
                 affected_alpha = affected_alpha + factor
                 avg_alpha = avg_alpha + factor * a
             end
@@ -80,7 +82,7 @@ function bilinear_filtering(texture, pos_uv)
     end
 
     avg_alpha = avg_alpha / affected_alpha
-    avg = vector.multiply(avg, 1 / affected)
+    avg = vector.divide_scalar(avg, affected)
     local color = {avg_alpha, unpack(avg)}
     return color
 end

@@ -1,3 +1,5 @@
+local vector = modlib.vector
+
 dithering_matrices = {
     {
         name = "Floyd-Steinberg",
@@ -69,7 +71,7 @@ function dither(texture, closest_color_finder, matrix)
                                 vector.clamp(
                                         vector.add(
                                                 rgba_number_to_table(get_texture_color_at(texture, x, y)),
-                                                vector.multiply(error, diff)
+                                                vector.multiply_scalar(error, diff)
                                         ),
                                         0, 255
                                 )

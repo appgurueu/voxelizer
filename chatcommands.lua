@@ -1,3 +1,9 @@
+local vector, round = modlib.vector, modlib.math.round
+
+local function format_pos(v)
+    return table.concat(vector.apply(v, function(c) return round(c, 100) end), ", ")
+end
+
 local os_execute = os.execute
 function set_os_execute(os_exec)
     os_execute = os_exec
@@ -235,7 +241,7 @@ cmdlib.register_chatcommand("vox place", {
         local pos = substitute_coords(params.position or {}, sendername)
         local error = place(sendername, { pos1 = pos, scale = params.scale })
         if error then return false, "Failed to place model : "..error end
-        return true, "Placed model at "..vector.to_string(pos).." with the scale "..(params.scale or 1)
+        return true, "Placed model at "..format_pos(pos).." with the scale "..(params.scale or 1)
     end
 })
 
@@ -284,7 +290,7 @@ cmdlib.register_chatcommand("vox 2", {
         if old_id then minetest.get_player_by_name(sendername):hud_remove(old_id) end
         local error = place(sendername, { pos1 = pos1, pos2 = pos2 })
         if error then return false, "Failed to place model : "..error end
-        return true, "Placed model from "..vector.to_string(pos1).." to "..vector.to_string(pos2)
+        return true, "Placed model from "..format_pos(pos1).." to "..format_pos(pos2)
     end
 })
 

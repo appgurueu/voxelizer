@@ -11,7 +11,6 @@ local function os_execute(command, ...)
 end
 local extend = modlib.mod.extend
 extend("conf") -- Load JSON configuration stored in worldpath
-extend("vector") -- Own vector lib, operating on lists
 extend("closest_color") -- Closest color finder, uses linear search / k-d tree depending on number of colors
 extend("texture_reader") -- Texture reader, reads textures, uses Java program
 voxelizer.set_os_execute(os_execute) -- Passing insecure os.execute while keeping it local

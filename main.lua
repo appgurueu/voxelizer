@@ -1,3 +1,5 @@
+local vector = modlib.vector
+
 function get_media(name)
     local path = minetest.get_worldpath() .. "/media/" .. name
     if not modlib.file.exists(path) then
@@ -27,7 +29,8 @@ function get_voxel_area(min, max, vm)
         if min[i] < 0 then vox_min[i]=math.floor(min[i]) else vox_min[i]=math.ceil(min[i]) end
         if max[i] < 0 then vox_max[i]=math.floor(max[i]) else vox_max[i]=math.ceil(max[i]) end
     end -- Floor/ceil min/max for VoxelArea
-    vox_min, vox_max = vector.convert(vector.subtract(vox_min, {16,16,16})), vector.convert(vector.add(vox_max, {16,16,16}))
+	-- TODO ensure this margin is needed
+    vox_min, vox_max = vector.to_minetest(vector.subtract(vox_min, {16,16,16})), vector.to_minetest(vector.add(vox_max, {16,16,16}))
     local c1, c2 = vm:read_from_map(vox_min, vox_max)
     local area = VoxelArea:new{MinEdge=c1, MaxEdge=c2}
     return area
@@ -84,13 +87,13 @@ function place_obj(params)
             local transform_vec = vector.divide(mt_space, obj_space)
             function transform(v)
                 local vec = vector.subtract(v, min) -- translate to 0
-                local res = vector.multiply_vector(vec, transform_vec)
+                local res = vector.multiply(vec, transform_vec)
                 res = vector.add(res, pos1)
                 return res
             end
         elseif scale then
             function transform(v)
-                local res = vector.add(vector.multiply(v, scale), pos1)
+                local res = vector.add(vector.multiply_scalar(v, scale), pos1)
                 return res
             end
         else
@@ -141,15 +144,15 @@ function place_obj(params)
             for l1=0,1,1/(len1*steps) do -- Lambda 1 - scalar of first basis
                 for l2=0,1,1/(len2*steps) do -- Lambda 2 - 2nd one
                     if l1+l2 <= 1 then -- On triangle
-                        local res = vector.add(vector.multiply(b1, l1), vector.multiply(b2, l2))
+                        local res = vector.add(vector.multiply_scalar(b1, l1), vector.multiply_scalar(b2, l2))
                         local pos = vector.add(points[1], res)
-                        local floor_pos = vector.convert(vector.floor(pos))
+                        local floor_pos = vector.to_minetest(vector.floor(pos))
                         local index = area:indexp(floor_pos)
                         if merge_at(floor_pos, index) then
                             nodes[index] = nodes[index] or {amount=0}
                             nodes[index].amount = nodes[index].amount + 1
                             -- Now finding the same coord on texture
-                            local pos_uv = vector.add(uvs[1], vector.add(vector.multiply(u1, l1), vector.multiply(u2, l2)))
+                            local pos_uv = vector.add(uvs[1], vector.add(vector.multiply_scalar(u1, l1), vector.multiply_scalar(u2, l2)))
                             local color_uv = get_texture_color_at(texture, math.floor(pos_uv[1]*(texture.width-0.0000001)), math.floor((1-pos_uv[2])*(texture.height-0.0000001)))
                             nodes[index][color_uv] = ((nodes[index][color_uv]) and (nodes[index][color_uv]+1)) or 1
                         end
@@ -180,9 +183,9 @@ function place_obj(params)
             for color, count in pairs(node) do
                 sumcount = sumcount + count
                 local color = rgba_number_to_table(color)
-                average_color = vector.add(average_color, vector.multiply(color, count))
+                average_color = vector.add(average_color, vector.multiply_scalar(color, count))
             end
-            average_color = vector.multiply(average_color, 1/sumcount)
+            average_color = vector.divide_scalar(average_color, sumcount)
             return average_color
         end
     end
