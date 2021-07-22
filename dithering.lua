@@ -66,16 +66,8 @@ function dither(texture, closest_color_finder, matrix)
                 for index, diff in ipairs(line) do
                     local nx, ny = x + index + line.x_off-1, y+ydif-1
                     if nx >= 0 and ny >= 0 and nx <= texture.width-1 and ny <= texture.height-1 then
-                        if not rgba_number_to_table(get_texture_color_at(texture, x, y)) then error("AAAA") end
-                        local target_color = vector.floor(
-                                vector.clamp(
-                                        vector.add(
-                                                rgba_number_to_table(get_texture_color_at(texture, x, y)),
-                                                vector.multiply_scalar(error, diff)
-                                        ),
-                                        0, 255
-                                )
-                        )
+                        local tab = assert(rgba_number_to_table(get_texture_color_at(texture, x, y)))
+                        local target_color = vector.floor(vector.clamp(vector.add(tab, vector.multiply_scalar(error, diff)), 0, 255))
                         set_texture_color_at(texture, x, y, rgba_table_to_number(target_color))
                     end
                 end
