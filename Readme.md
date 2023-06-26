@@ -137,63 +137,98 @@ Everything else should not be ticked.
 
 ## Configuration
 
-JSON Configuration: `<worldpath>/config/voxelizer.json`
-Text Logs: `<worldpath>/logs/voxelizer/<date>.txt`
-Readme : `<modpath/gamepath>/voxelizer/Readme.md`
-Default Configuration : `<modpath/gamepath>/voxelizer/default_config.json`
+<!--modlib:conf:2-->
+### `defaults`
 
-```json
-{
-  "max_precision" : 15,
-  "download" : true,
-  "defaults" : {
-    "precision" : 4,
-    "min_density" : 0.1,
-    "dithering" : 10,
-    "placement" : 1,
-    "color_choosing" : 1,
-    "filtering" : 1
-   }
-}
-```
+#### `color_choosing`
 
-#### `max_precision`
+Default color choosing algorithm ID (see `/vox color_choosing`)
 
-Integer, maximum settable precision.
+* Type: number
+* Default: `1`
+* Integer
+* &gt;= `1`
+* &lt;= `2`
 
-#### `download`
+#### `dithering`
 
-Boolean, whether to enable the `/vox download` chatcommand.
+Default dithering algorithm ID (see `/vox dithering`)
 
-#### `defaults`
+* Type: number
+* Default: `10`
+* Integer
+* &gt;= `1`
+* &lt;= `10`
 
-Dictionary / table, default names assigned to corresponding values. Possible names below.
+#### `filtering`
 
-##### `min_density`
+Default filtering algorithm ID (see `/vox filtering`)
 
-Float between 0 and 1. Minimum density default.
+* Type: number
+* Default: `1`
+* Integer
+* &gt;= `1`
+* &lt;= `2`
 
-##### `precision`
+#### `min_density`
 
-Integer > 1 and < 100. Precision default.
+Minimum density default
 
-##### `dithering`
+* Type: number
+* Default: `0.1`
+* &gt;= `0`
+* &lt;= `1`
 
-Default dithering algorithm ID (see `/vox dithering`).
+#### `model`
 
-##### `placement`
+Default model filename in world's media folder
 
-Default placement mode ID (see `/vox placement`).
+* Type: string
 
-##### `color_choosing`
+#### `nodemap`
 
-Default color choosing algorithm ID (see `/vox color_choosing`).
+Default nodemap filename in world's media folder
 
-##### `filtering`
+* Type: string
 
-Default filtering algorithm ID (see `/vox filtering`).
+#### `placement`
 
-##### `model` / `texture` / `nodemap`
+Default placement mode ID (see `/vox placement`)
 
-Optional default filenames. Files will be searched in world's media folder.
-If not given, Voxelizer falls back to default files from mod's media folder.
+* Type: number
+* Default: `1`
+* Integer
+* &gt;= `1`
+* &lt;= `3`
+
+#### `precision`
+
+Precision default
+
+* Type: number
+* Default: `4`
+* Integer
+* &gt;= `1`
+* &lt;= `100`
+
+#### `texture`
+
+Default texture filename in world's media folder
+
+* Type: string
+
+
+### `download`
+
+Whether to enable the `/vox download` chatcommand
+
+* Type: boolean
+* Default: `false`
+
+### `max_precision`
+
+
+* Type: number
+* Default: `15`
+* Integer
+<!--modlib:conf-->

@@ -1,3 +1,33 @@
-voxelizer.max_precision (Voxelizer max_precision) int 15
+# Whether to enable the `/vox download` chatcommand
+voxelizer.download (Voxelizer Download) bool false
 
-voxelizer.download (Voxelizer download) bool true
+voxelizer.max_precision (Voxelizer Max precision) int 15
+
+[voxelizer.defaults]
+
+# Default color choosing algorithm ID (see `/vox color_choosing`)
+voxelizer.defaults.color_choosing (Voxelizer Defaults Color choosing) int 1 1 2
+
+# Default dithering algorithm ID (see `/vox dithering`)
+voxelizer.defaults.dithering (Voxelizer Defaults Dithering) int 10 1 10
+
+# Default filtering algorithm ID (see `/vox filtering`)
+voxelizer.defaults.filtering (Voxelizer Defaults Filtering) int 1 1 2
+
+# Minimum density default
+voxelizer.defaults.min_density (Voxelizer Defaults Min density) float 0.1 0.000000 1.000000
+
+# Default model filename in world's media folder
+voxelizer.defaults.model (Voxelizer Defaults Model) string 
+
+# Default nodemap filename in world's media folder
+voxelizer.defaults.nodemap (Voxelizer Defaults Nodemap) string 
+
+# Default placement mode ID (see `/vox placement`)
+voxelizer.defaults.placement (Voxelizer Defaults Placement) int 1 1 3
+
+# Precision default
+voxelizer.defaults.precision (Voxelizer Defaults Precision) int 4 1 100
+
+# Default texture filename in world's media folder
+voxelizer.defaults.texture (Voxelizer Defaults Texture) string 

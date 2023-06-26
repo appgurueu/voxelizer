@@ -10,9 +10,20 @@ local function os_execute(command, ...)
     return os_execute_base(command.." "..table.concat(args, " "))
 end
 local function load(name, ...)
-	assert(loadfile(modlib.mod.get_resource(name .. ".lua")))(...)
+	local chunk = assert(loadfile(modlib.mod.get_resource(name .. ".lua")))
+	setfenv(chunk, voxelizer)
+	chunk(...)
 end
-load"conf" -- Load JSON configuration stored in worldpath
+do
+	local config = modlib.mod.configuration()
+	voxelizer.default_media_path = modlib.mod.get_resource(minetest.get_current_modname(), "default_media", "")
+	for key, alt in pairs{texture = "character.png", model = "character.obj", nodemap = "colors.txt"} do
+	    if config.defaults[key] == nil then
+	        config.defaults[key] = voxelizer.default_media_path .. alt
+	    end
+	end
+	voxelizer.config = config
+end
 load"closest_color" -- Closest color finder, uses linear search / k-d tree depending on number of colors
 load("texture_reader", os_execute) -- Texture reader, reads textures, uses Java program
 load"dithering" -- Error diffusion dithering
