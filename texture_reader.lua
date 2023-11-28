@@ -111,7 +111,7 @@ function read_texture(path_to_texture)
         end
         local response_code = os_execute("java", "-classpath", minetest.get_modpath("voxelizer").."/production", "TextureLoader", path_to_texture, path_to_output)
         if response_code ~= 0 then
-            return errors[response_code] or "Texture couldn't be converted"
+            return nil, errors[response_code] or "Unknown error"
         end
     end
 

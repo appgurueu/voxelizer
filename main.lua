@@ -57,7 +57,10 @@ function place_obj(params)
     local colors = modlib.table.keys(nodemap)
     modlib.table.map(colors, rgb_number_to_table)
     local closest_color_finder = closest_color_finder(colors)
-    local texture = read_texture(path_to_texture)
+    local texture, err = read_texture(path_to_texture)
+    if not texture then
+        return "Error converting texture: " .. err
+    end
     if params.dithering then
         texture = dither(texture, closest_color_finder, params.dithering)
     end
